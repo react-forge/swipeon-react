@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { SwipeCard } from '../src/index';
+import { SwipeCard } from 'swipeon-react';
 
 interface Card {
   id: number;
