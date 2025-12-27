@@ -33,12 +33,50 @@ export interface SwipeConfig {
   returnDuration?: number;
   /** Enable/disable rotation effect during drag */
   enableRotation?: boolean;
+  /** Array of directions to prevent swiping in */
+  preventSwipe?: SwipeDirection[];
+}
+
+/**
+ * Style configuration for each swipe direction
+ */
+export interface SwipeDirectionStyle {
+  /** Background color for the overlay - supports rgba, hex, or color name */
+  backgroundColor?: string;
+  /** Label text to display when swiping in this direction */
+  label?: string;
+  /** Custom CSS styles for the label */
+  labelStyle?: CSSProperties;
+}
+
+/**
+ * Styles for different swipe directions
+ */
+export interface SwipeStyles {
+  /** Style applied when swiping right */
+  right?: SwipeDirectionStyle;
+  /** Style applied when swiping left */
+  left?: SwipeDirectionStyle;
+  /** Style applied when swiping up */
+  up?: SwipeDirectionStyle;
+  /** Style applied when swiping down */
+  down?: SwipeDirectionStyle;
+}
+
+/**
+ * Configuration for the swipe direction overlay
+ */
+export interface SwipeOverlayConfig {
+  /** Styles and labels for different swipe directions */
+  swipeStyles?: SwipeStyles;
+  /** Whether to show the swipe overlay */
+  showOverlay?: boolean;
 }
 
 /**
  * Props for the SwipeCard component
  */
-export interface SwipeCardProps extends SwipeCallbacks, SwipeConfig {
+export interface SwipeCardProps extends SwipeCallbacks, SwipeConfig, SwipeOverlayConfig {
   /** Content to render inside the card */
   children: ReactNode;
   /** Additional CSS class name */
@@ -74,5 +112,7 @@ export interface UseSwipeReturn {
   opacity: number;
   transition: string;
   isDragging: boolean;
+  deltaX: number;
+  deltaY: number;
 }
 
