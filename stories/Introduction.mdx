@@ -1,4 +1,7 @@
 import { Meta } from '@storybook/blocks';
+import packageJson from '../package.json';
+
+export const version = packageJson.version;
 
 <Meta title="Introduction" />
 
@@ -178,7 +181,7 @@ import { Meta } from '@storybook/blocks';
 
 <div className="sb-container">
   <div className="sb-hero">
-    <span className="sb-badge">✨ v0.1.0-alpha</span>
+    <span className="sb-badge">✨ v{version}</span>
     <h1>SwipeOn React</h1>
     <p>
       High-performance swipe card library for React with buttery-smooth 

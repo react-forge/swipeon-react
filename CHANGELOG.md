@@ -5,6 +5,36 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2025-12-27
+
+### 🎉 First Stable Release
+
+This marks the first stable release of SwipeOn React! The library is now production-ready with a complete feature set and stable API.
+
+### Added
+- Production-ready `SwipeCard` component for building Tinder-like interfaces
+- `useSwipe` hook for advanced customization and full control
+- Direction-specific overlay support with dynamic opacity based on swipe progress
+- Comprehensive TypeScript definitions for all props and callbacks
+- Full documentation and Storybook examples
+
+### Features
+- 🚀 High-performance 60fps animations with hardware acceleration
+- 🎯 4-way swipe support (left, right, up, down)
+- 📱 Unified touch and mouse input handling via Pointer Events API
+- 🎨 Configurable rotation effects during drag
+- ⚡ Velocity-based swipe detection for natural feel
+- 🪶 Zero external dependencies (React 16.8+ only)
+- 🔧 Highly configurable thresholds, durations, and animations
+
+### Performance
+- Uses `requestAnimationFrame` for smooth gesture tracking
+- Hardware-accelerated CSS transforms (`translate3d`)
+- Optimized state management to minimize re-renders
+- CSS `will-change` hints for browser optimization
+
+---
+
 ## [0.0.1-alpha.3] - 2025-12-27
 
 ### Fixed
@@ -44,5 +74,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Passive event listeners where appropriate
 - CSS containment and `will-change` optimization
 
+[1.0.0]: https://github.com/react-forge/swipeon-react/releases/tag/v1.0.0
 [0.0.1-alpha.3]: https://github.com/react-forge/swipeon-react/releases/tag/v0.0.1-alpha.3
 [0.0.1-alpha.1]: https://github.com/react-forge/swipeon-react/releases/tag/v0.0.1-alpha.1
