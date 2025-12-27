@@ -127,15 +127,23 @@ const App: React.FC = () => {
             threshold={80}
             velocityThreshold={0.3}
             maxRotation={15}
+            // Overlay customization props - per-direction labels and styles
+            swipeStyles={{
+              right: { backgroundColor: 'rgba(16, 185, 129, 0.8)', label: '👍 Like' },
+              left: { backgroundColor: 'rgba(244, 63, 94, 0.8)', label: '👎 Nope' },
+              up: { backgroundColor: 'rgba(59, 130, 246, 0.8)', label: '⭐ Super' },
+              down: { backgroundColor: 'rgba(168, 85, 247, 0.8)', label: '⏭ Skip' },
+            }}
             style={{
               zIndex: index,
-              transform: `scale(${1 - (cards.length - index - 1) * 0.05})`,
+              transform: `translateY(${(cards.length - index - 1) * 8}px) scale(${1 - (cards.length - index - 1) * 0.02})`,
+              pointerEvents: index === cards.length - 1 ? 'auto' : 'none',
             }}
           >
             <div
               className="card-content"
               style={{
-                background: `linear-gradient(135deg, ${card.color}22 0%, ${card.color}44 100%)`,
+                background: '#ffffff',
               }}
             >
               <img

@@ -11,6 +11,9 @@ export type {
   SwipeCallbacks,
   SwipeConfig,
   SwipeCardProps,
+  SwipeOverlayConfig,
+  SwipeDirectionStyle,
+  SwipeStyles,
   GestureState,
   UseSwipeReturn,
 } from './types';
