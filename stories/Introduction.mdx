@@ -1,0 +1,272 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+<style>
+  {`
+    .sb-container {
+      margin-bottom: 48px;
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .sb-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #e879f9 100%);
+      border-radius: 16px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .sb-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .sb-hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      margin: 0 0 16px 0;
+      position: relative;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      letter-spacing: -2px;
+    }
+    
+    .sb-hero p {
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.95);
+      max-width: 600px;
+      margin: 0;
+      position: relative;
+      line-height: 1.6;
+    }
+    
+    .sb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      color: white;
+      margin-bottom: 24px;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .sb-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    
+    .sb-feature {
+      background: linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 32px;
+      transition: all 0.3s ease;
+    }
+    
+    .sb-feature:hover {
+      transform: translateY(-4px);
+      border-color: rgba(232, 121, 249, 0.4);
+      box-shadow: 0 20px 40px -20px rgba(168, 85, 247, 0.3);
+    }
+    
+    .sb-feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .sb-feature h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #f3f4f6;
+      margin: 0 0 8px 0;
+    }
+    
+    .sb-feature p {
+      font-size: 0.95rem;
+      color: #9ca3af;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    .sb-code {
+      background: #0f0f23;
+      border-radius: 12px;
+      padding: 24px;
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .sb-code pre {
+      margin: 0;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.875rem;
+      line-height: 1.7;
+      color: #e5e7eb;
+    }
+    
+    .sb-code .comment { color: #6b7280; }
+    .sb-code .keyword { color: #c084fc; }
+    .sb-code .string { color: #34d399; }
+    .sb-code .function { color: #60a5fa; }
+    .sb-code .component { color: #f472b6; }
+    
+    .sb-section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #f3f4f6;
+      margin: 0 0 24px 0;
+      letter-spacing: -0.5px;
+    }
+    
+    .sb-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    
+    .sb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+    
+    .sb-link-primary {
+      background: linear-gradient(135deg, #a855f7, #e879f9);
+      color: white;
+    }
+    
+    .sb-link-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px -10px rgba(168, 85, 247, 0.5);
+    }
+    
+    .sb-link-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #f3f4f6;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .sb-link-secondary:hover {
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+  `}
+</style>
+
+<div className="sb-container">
+  <div className="sb-hero">
+    <span className="sb-badge">✨ v0.1.0-alpha</span>
+    <h1>SwipeOn React</h1>
+    <p>
+      High-performance swipe card library for React with buttery-smooth 
+      animations and multi-directional gesture support.
+    </p>
+  </div>
+
+  <div className="sb-features">
+    <div className="sb-feature">
+      <span className="sb-feature-icon">⚡</span>
+      <h3>60 FPS Animations</h3>
+      <p>
+        Hardware-accelerated transforms with RAF-based updates ensure silky smooth 
+        gesture response across all devices.
+      </p>
+    </div>
+    <div className="sb-feature">
+      <span className="sb-feature-icon">🎯</span>
+      <h3>4-Direction Swipe</h3>
+      <p>
+        Support for left, right, up, and down swipe gestures with configurable 
+        thresholds and velocity detection.
+      </p>
+    </div>
+    <div className="sb-feature">
+      <span className="sb-feature-icon">🎨</span>
+      <h3>Customizable Overlays</h3>
+      <p>
+        Direction-specific overlay colors, labels, and styles that respond 
+        dynamically to swipe progress.
+      </p>
+    </div>
+    <div className="sb-feature">
+      <span className="sb-feature-icon">🪶</span>
+      <h3>Lightweight</h3>
+      <p>
+        Zero external dependencies, tree-shakeable, and under 5KB gzipped. 
+        Works with React 16.8+.
+      </p>
+    </div>
+    <div className="sb-feature">
+      <span className="sb-feature-icon">🔧</span>
+      <h3>TypeScript First</h3>
+      <p>
+        Full TypeScript support with comprehensive type definitions for 
+        props, callbacks, and configurations.
+      </p>
+    </div>
+    <div className="sb-feature">
+      <span className="sb-feature-icon">📱</span>
+      <h3>Touch & Mouse</h3>
+      <p>
+        Unified pointer event handling works seamlessly on touch screens, 
+        trackpads, and mouse-driven interfaces.
+      </p>
+    </div>
+  </div>
+
+  <h2 className="sb-section-title">Quick Start</h2>
+  
+  <div className="sb-code">
+    <pre>
+      <span className="comment">// Install the package</span>{'\n'}
+      <span className="keyword">npm</span> install swipeon-react{'\n\n'}
+      
+      <span className="comment">// Use in your component</span>{'\n'}
+      <span className="keyword">import</span> {'{'} <span className="component">SwipeCard</span> {'}'} <span className="keyword">from</span> <span className="string">'swipeon-react'</span>;{'\n\n'}
+      
+      <span className="keyword">function</span> <span className="function">App</span>() {'{'}{'\n'}
+      {'  '}<span className="keyword">return</span> ({'\n'}
+      {'    '}&lt;<span className="component">SwipeCard</span>{'\n'}
+      {'      '}<span className="function">onSwipeLeft</span>={'{'}() => <span className="function">console</span>.log(<span className="string">'Rejected!'</span>){'}'}{'\n'}
+      {'      '}<span className="function">onSwipeRight</span>={'{'}() => <span className="function">console</span>.log(<span className="string">'Accepted!'</span>){'}'}{'\n'}
+      {'    '}>{'\n'}
+      {'      '}&lt;<span className="keyword">div</span>>Your card content&lt;/<span className="keyword">div</span>>{'\n'}
+      {'    '}&lt;/<span className="component">SwipeCard</span>>{'\n'}
+      {'  '});{'\n'}
+      {'}'}{'\n'}
+    </pre>
+  </div>
+
+  <div className="sb-links">
+    <a href="https://github.com/react-forge/swipeon-react" className="sb-link sb-link-primary" target="_blank">
+      📦 View on GitHub
+    </a>
+    <a href="https://www.npmjs.com/package/swipeon-react" className="sb-link sb-link-secondary" target="_blank">
+      📚 NPM Package
+    </a>
+  </div>
+</div>
+
