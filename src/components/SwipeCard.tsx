@@ -15,13 +15,14 @@ import { SwipeCardProps, SwipeCallbacks, SwipeConfig } from '../types';
  *   onSwipeRight={() => console.log('Swiped right')}
  *   threshold={100}
  *   swipeStyles={{
+ *     // backgroundColor is optional - transparent by default (card content stays visible)
  *     right: { 
- *       backgroundColor: 'rgba(34, 197, 94, 0.6)', 
+ *       backgroundColor: 'rgba(34, 197, 94, 0.6)', // green overlay
  *       label: '👍 Like',
  *       labelStyle: { position: 'absolute', top: 20, right: 20 }
  *     },
  *     left: { 
- *       backgroundColor: 'rgba(239, 68, 68, 0.6)', 
+ *       backgroundColor: 'rgba(239, 68, 68, 0.6)', // red overlay
  *       label: '👎 Nope',
  *       labelStyle: { position: 'absolute', top: 20, left: 20 }
  *     },
@@ -37,17 +38,17 @@ const DEFAULT_LABEL_STYLE: CSSProperties = {
   fontSize: '2rem',
   fontWeight: 'bold',
   color: '#fff',
-  textTransform: 'uppercase',
   letterSpacing: '2px',
   textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
 };
 
 // Default styles for each direction - constant
+// backgroundColor defaults to transparent so card content remains visible unless explicitly set
 const DEFAULT_SWIPE_STYLES = {
-  right: { backgroundColor: 'rgba(34, 197, 94, 0.6)', label: '✓ Accept', labelStyle: DEFAULT_LABEL_STYLE },
-  left: { backgroundColor: 'rgba(239, 68, 68, 0.6)', label: '✗ Reject', labelStyle: DEFAULT_LABEL_STYLE },
-  up: { backgroundColor: 'rgba(59, 130, 246, 0.6)', label: '⭐ Super', labelStyle: DEFAULT_LABEL_STYLE },
-  down: { backgroundColor: 'rgba(168, 85, 247, 0.6)', label: '⏭ Skip', labelStyle: DEFAULT_LABEL_STYLE },
+  right: { backgroundColor: 'transparent', label: '✓ Accept', labelStyle: DEFAULT_LABEL_STYLE },
+  left: { backgroundColor: 'transparent', label: '✗ Reject', labelStyle: DEFAULT_LABEL_STYLE },
+  up: { backgroundColor: 'transparent', label: '⭐ Super', labelStyle: DEFAULT_LABEL_STYLE },
+  down: { backgroundColor: 'transparent', label: '⏭ Skip', labelStyle: DEFAULT_LABEL_STYLE },
 } as const;
 
 // Empty array constant to prevent recreating on each render
@@ -70,6 +71,7 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
   returnDuration = 200,
   enableRotation = true,
   preventSwipe = EMPTY_PREVENT_SWIPE as any,
+  fadeOnSwipe = true,
   swipeStyles,
   showOverlay: showOverlayProp = true,
 }) => {
@@ -92,7 +94,8 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
     returnDuration,
     enableRotation,
     preventSwipe,
-  }), [threshold, velocityThreshold, maxRotation, exitDuration, returnDuration, enableRotation, preventSwipe]);
+    fadeOnSwipe,
+  }), [threshold, velocityThreshold, maxRotation, exitDuration, returnDuration, enableRotation, preventSwipe, fadeOnSwipe]);
 
   const { ref, transform, opacity, transition, isDragging, deltaX, deltaY } = useSwipe(callbacks, config);
 
@@ -150,7 +153,7 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
   }, [isSwipingRight, isSwipingLeft, isSwipingUp, isSwipingDown]);
 
   const currentStyle = currentDirection ? mergedSwipeStyles[currentDirection] : null;
-  const backgroundColor = currentStyle?.backgroundColor ?? 'transparent';
+  const backgroundColor = currentStyle?.backgroundColor ?? 'inherit';
   const labelConfig = currentStyle ? { label: currentStyle.label, labelStyle: currentStyle.labelStyle } : null;
 
   // Memoize card style - only recalculate when values change
@@ -182,7 +185,7 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
     zIndex: 10,
     opacity: showOverlay ? swipeProgress : 0,
     transition: isDragging ? 'none' : 'opacity 200ms ease-out',
-    backgroundColor: showOverlay ? backgroundColor : 'transparent',
+    backgroundColor: showOverlay ? backgroundColor : 'inherit',
   }), [showOverlay, swipeProgress, isDragging, backgroundColor]);
 
   // Memoize computed label style

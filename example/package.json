@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swipeon-react": "0.0.1-alpha.2"
+    "swipeon-react": "1.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.45",

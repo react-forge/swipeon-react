@@ -263,6 +263,230 @@ export const version = packageJson.version;
     </pre>
   </div>
 
+  <h2 className="sb-section-title" style={{ marginTop: 48 }}>Props Reference</h2>
+
+  <div style={{ overflowX: 'auto', marginBottom: 32 }}>
+    <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+      <thead>
+        <tr style={{ borderBottom: '2px solid rgba(255,255,255,0.2)' }}>
+          <th style={{ textAlign: 'left', padding: '12px 16px', color: '#f3f4f6', fontWeight: 600 }}>Prop</th>
+          <th style={{ textAlign: 'left', padding: '12px 16px', color: '#f3f4f6', fontWeight: 600 }}>Type</th>
+          <th style={{ textAlign: 'left', padding: '12px 16px', color: '#f3f4f6', fontWeight: 600 }}>Default</th>
+          <th style={{ textAlign: 'left', padding: '12px 16px', color: '#f3f4f6', fontWeight: 600 }}>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>children</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>ReactNode</td>
+          <td style={{ padding: '12px 16px', color: '#f472b6' }}>required</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Content to render inside the card</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeLeft</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swiped left</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeRight</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swiped right</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeUp</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swiped up</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeDown</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swiped down</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeStart</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swipe gesture starts</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>onSwipeEnd</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>() =&gt; void</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Callback when swipe gesture ends</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>threshold</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>number</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>100</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Minimum distance (px) to trigger swipe</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>velocityThreshold</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>number</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>0.5</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Minimum velocity to trigger swipe</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>maxRotation</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>number</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>15</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Maximum rotation angle (degrees)</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>exitDuration</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>number</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>300</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Exit animation duration (ms)</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>returnDuration</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>number</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>200</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Spring-back animation duration (ms)</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>enableRotation</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>boolean</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>true</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Enable rotation effect during drag</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>fadeOnSwipe</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>boolean</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>true</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Enable opacity fade while swiping</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>showOverlay</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>boolean</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>true</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Show direction overlay during swipe</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>preventSwipe</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>SwipeDirection[]</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>[]</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Directions to disable</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>swipeStyles</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>SwipeStyles</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Custom styles per direction</td>
+        </tr>
+        <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>className</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>string</td>
+          <td style={{ padding: '12px 16px', color: '#34d399' }}>''</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Additional CSS class name</td>
+        </tr>
+        <tr>
+          <td style={{ padding: '12px 16px', color: '#c084fc', fontFamily: 'monospace' }}>style</td>
+          <td style={{ padding: '12px 16px', color: '#9ca3af', fontFamily: 'monospace' }}>CSSProperties</td>
+          <td style={{ padding: '12px 16px', color: '#6b7280' }}>-</td>
+          <td style={{ padding: '12px 16px', color: '#d1d5db' }}>Additional inline styles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 className="sb-section-title">SwipeStyles Type</h2>
+  
+  <div className="sb-code" style={{ marginBottom: 32 }}>
+    <pre>
+      <span className="keyword">interface</span> <span className="component">SwipeStyles</span> {'{'}{'\n'}
+      {'  '}right?: <span className="component">SwipeDirectionStyle</span>;{'\n'}
+      {'  '}left?: <span className="component">SwipeDirectionStyle</span>;{'\n'}
+      {'  '}up?: <span className="component">SwipeDirectionStyle</span>;{'\n'}
+      {'  '}down?: <span className="component">SwipeDirectionStyle</span>;{'\n'}
+      {'}'}{'\n\n'}
+      <span className="keyword">interface</span> <span className="component">SwipeDirectionStyle</span> {'{'}{'\n'}
+      {'  '}backgroundColor?: <span className="string">string</span>;  <span className="comment">// Overlay background color</span>{'\n'}
+      {'  '}label?: <span className="string">string</span>;            <span className="comment">// Text displayed during swipe</span>{'\n'}
+      {'  '}labelStyle?: <span className="string">CSSProperties</span>; <span className="comment">// Custom label styling</span>{'\n'}
+      {'}'}{'\n'}
+    </pre>
+  </div>
+
+  <h2 className="sb-section-title">Complete Example (Tinder-Style Card Stack)</h2>
+  
+  <div className="sb-code">
+    <pre>
+      <span className="keyword">import</span> {'{'} <span className="component">SwipeCard</span> {'}'} <span className="keyword">from</span> <span className="string">'swipeon-react'</span>;{'\n\n'}
+      
+      <span className="keyword">function</span> <span className="function">TinderStack</span>() {'{'}{'\n'}
+      {'  '}<span className="keyword">const</span> [cards, setCards] = useState(profiles);{'\n\n'}
+      
+      {'  '}<span className="keyword">const</span> <span className="function">handleSwipe</span> = (direction) => {'{'}{'\n'}
+      {'    '}setCards(prev => prev.slice(0, -1));{'\n'}
+      {'  }'};{'\n\n'}
+      
+      {'  '}<span className="keyword">return</span> ({'\n'}
+      {'    '}&lt;<span className="keyword">div</span> className=<span className="string">"card-container"</span>>{'\n'}
+      {'      '}{'{'}cards.map((card, index) => ({'\n'}
+      {'        '}&lt;<span className="component">SwipeCard</span>{'\n'}
+      {'          '}key={'{'}card.id{'}'}{'\n'}
+      {'          '}<span className="function">onSwipeLeft</span>={'{'}() => handleSwipe(<span className="string">'left'</span>){'}'}{'\n'}
+      {'          '}<span className="function">onSwipeRight</span>={'{'}() => handleSwipe(<span className="string">'right'</span>){'}'}{'\n'}
+      {'          '}<span className="function">onSwipeUp</span>={'{'}() => handleSwipe(<span className="string">'up'</span>){'}'}{'\n'}
+      {'          '}<span className="function">onSwipeDown</span>={'{'}() => handleSwipe(<span className="string">'down'</span>){'}'}{'\n'}
+      {'          '}threshold={'{'}80{'}'}{'\n'}
+      {'          '}velocityThreshold={'{'}0.3{'}'}{'\n'}
+      {'          '}maxRotation={'{'}15{'}'}{'\n'}
+      {'          '}fadeOnSwipe={'{'}false{'}'}{'\n'}
+      {'          '}swipeStyles={'{{'}'{'\n'}
+      {'            '}right: {'{'}{'\n'}
+      {'              '}label: <span className="string">'LIKE'</span>,{'\n'}
+      {'              '}labelStyle: {'{'}{'\n'}
+      {'                '}position: <span className="string">'absolute'</span>,{'\n'}
+      {'                '}top: 20, right: 20,{'\n'}
+      {'                '}fontSize: <span className="string">'2.5rem'</span>,{'\n'}
+      {'                '}fontWeight: <span className="string">'bold'</span>,{'\n'}
+      {'                '}color: <span className="string">'#22c55e'</span>,{'\n'}
+      {'                '}border: <span className="string">'4px solid #22c55e'</span>,{'\n'}
+      {'                '}borderRadius: <span className="string">'8px'</span>,{'\n'}
+      {'                '}padding: <span className="string">'8px 16px'</span>,{'\n'}
+      {'                '}transform: <span className="string">'rotate(-25deg)'</span>,{'\n'}
+      {'                '}backgroundColor: <span className="string">'rgba(255, 255, 255, 0.3)'</span>,{'\n'}
+      {'              }'}{'\n'}
+      {'            }'},{'\n'}
+      {'            '}left: {'{'}{'\n'}
+      {'              '}label: <span className="string">'NOPE'</span>,{'\n'}
+      {'              '}labelStyle: {'{'}{'\n'}
+      {'                '}position: <span className="string">'absolute'</span>,{'\n'}
+      {'                '}top: 20, left: 20,{'\n'}
+      {'                '}fontSize: <span className="string">'2.5rem'</span>,{'\n'}
+      {'                '}fontWeight: <span className="string">'bold'</span>,{'\n'}
+      {'                '}color: <span className="string">'#ef4444'</span>,{'\n'}
+      {'                '}border: <span className="string">'4px solid #ef4444'</span>,{'\n'}
+      {'                '}borderRadius: <span className="string">'8px'</span>,{'\n'}
+      {'                '}padding: <span className="string">'8px 16px'</span>,{'\n'}
+      {'                '}transform: <span className="string">'rotate(-25deg)'</span>,{'\n'}
+      {'                '}backgroundColor: <span className="string">'rgba(255, 255, 255, 0.3)'</span>,{'\n'}
+      {'              }'}{'\n'}
+      {'            }'},{'\n'}
+      {'            '}up: {'{'} backgroundColor: <span className="string">'rgba(16, 185, 129, 0.8)'</span>, label: <span className="string">'⭐ Super'</span> {'}'},{'\n'}
+      {'            '}down: {'{'} backgroundColor: <span className="string">'rgba(168, 85, 247, 0.8)'</span>, label: <span className="string">'⏭ Skip'</span> {'}'},{'\n'}
+      {'          }'}{'}'}{'\n'}
+      {'          '}style={'{{'}'{'\n'}
+      {'            '}zIndex: index,{'\n'}
+      {'            '}transform: `translateY(${'{'}{('}cards.length - index - 1{')'} * 8{'}'}px) scale(${'{'}{1 - ('}cards.length - index - 1{')'} * 0.02{'}'})`,{'\n'}
+      {'            '}pointerEvents: index === cards.length - 1 ? <span className="string">'auto'</span> : <span className="string">'none'</span>,{'\n'}
+      {'          }'}{'}'}{'\n'}
+      {'        '}>{'\n'}
+      {'          '}&lt;<span className="component">ProfileCard</span> profile={'{'}card{'}'} />{'\n'}
+      {'        '}&lt;/<span className="component">SwipeCard</span>>{'\n'}
+      {'      '})){'}'}{'\n'}
+      {'    '}&lt;/<span className="keyword">div</span>>{'\n'}
+      {'  '});{'\n'}
+      {'}'}{'\n'}
+    </pre>
+  </div>
+
   <div className="sb-links">
     <a href="https://github.com/react-forge/swipeon-react" className="sb-link sb-link-primary" target="_blank">
       📦 View on GitHub

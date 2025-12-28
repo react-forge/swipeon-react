@@ -1,55 +1,12 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { SwipeCard } from 'swipeon-react';
-
-interface Card {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  color: string;
-}
-
-const DEMO_CARDS: Card[] = [
-  {
-    id: 1,
-    title: 'React',
-    description: 'A JavaScript library for building user interfaces',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=400&fit=crop',
-    color: '#61dafb',
-  },
-  {
-    id: 2,
-    title: 'TypeScript',
-    description: 'JavaScript with syntax for types',
-    image: 'https://images.unsplash.com/photo-1619410283995-43d9134e7656?w=400&h=400&fit=crop',
-    color: '#3178c6',
-  },
-  {
-    id: 3,
-    title: 'Node.js',
-    description: 'JavaScript runtime built on Chrome V8',
-    image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=400&h=400&fit=crop',
-    color: '#339933',
-  },
-  {
-    id: 4,
-    title: 'GraphQL',
-    description: 'A query language for your API',
-    image: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=400&h=400&fit=crop',
-    color: '#e10098',
-  },
-  {
-    id: 5,
-    title: 'Docker',
-    description: 'Accelerate how you build, share, and run modern applications',
-    image: 'https://images.unsplash.com/photo-1605745341112-85968b19335b?w=400&h=400&fit=crop',
-    color: '#2496ed',
-  },
-];
+import { ACTRESS_PROFILES, ActressProfile } from './actress';
+import { Profile } from './Profile';
 
 const App: React.FC = () => {
-  const [cards, setCards] = useState<Card[]>(DEMO_CARDS);
+  const profiles: ActressProfile[] = ACTRESS_PROFILES.reverse();
+  const [cards, setCards] = useState<ActressProfile[]>(profiles);
   const [stats, setStats] = useState({
     left: 0,
     right: 0,
@@ -57,22 +14,18 @@ const App: React.FC = () => {
     down: 0,
   });
 
-  const currentCard = cards[cards.length - 1];
-
   const handleSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
     setStats((prev) => ({
       ...prev,
       [direction]: prev[direction] + 1,
     }));
 
-    // Remove the card after swipe
-    setTimeout(() => {
-      setCards((prev) => prev.slice(0, -1));
-    }, 300);
+    // Remove the card immediately - the animation has already completed when this callback fires
+    setCards((prev) => prev.slice(0, -1));
   };
 
   const resetCards = () => {
-    setCards(DEMO_CARDS);
+    setCards(profiles);
     setStats({ left: 0, right: 0, up: 0, down: 0 });
   };
 
@@ -127,11 +80,44 @@ const App: React.FC = () => {
             threshold={80}
             velocityThreshold={0.3}
             maxRotation={15}
+            fadeOnSwipe={false}
             // Overlay customization props - per-direction labels and styles
             swipeStyles={{
-              right: { backgroundColor: 'rgba(16, 185, 129, 0.8)', label: '👍 Like' },
-              left: { backgroundColor: 'rgba(244, 63, 94, 0.8)', label: '👎 Nope' },
-              up: { backgroundColor: 'rgba(59, 130, 246, 0.8)', label: '⭐ Super' },
+              right: {  
+                label: 'LIKE', 
+                labelStyle: { 
+                  position: 'absolute', 
+                  top: 20, 
+                  right: 20,
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  color: '#22c55e',
+                  border: '4px solid #22c55e',
+                  borderRadius: '8px',
+                  padding: '8px 16px',
+                  transform: 'rotate(-25deg)',
+                  letterSpacing: '2px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                } 
+              },
+              left: { 
+                label: 'NOPE',
+                labelStyle: { 
+                  position: 'absolute', 
+                  top: 20, 
+                  left: 20,
+                  fontSize: '2.5rem',
+                  fontWeight: 'bold',
+                  color: '#ef4444',
+                  border: '4px solid #ef4444',
+                  borderRadius: '8px',
+                  padding: '8px 16px',
+                  transform: 'rotate(-25deg)',
+                  letterSpacing: '2px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                }
+              },
+              up: { backgroundColor: 'rgba(16, 185, 129, 0.8)', label: '⭐ Super' },
               down: { backgroundColor: 'rgba(168, 85, 247, 0.8)', label: '⏭ Skip' },
             }}
             style={{
@@ -140,44 +126,9 @@ const App: React.FC = () => {
               pointerEvents: index === cards.length - 1 ? 'auto' : 'none',
             }}
           >
-            <div
-              className="card-content"
-              style={{
-                background: '#ffffff',
-              }}
-            >
-              <img
-                src={card.image}
-                alt={card.title}
-                className="card-image"
-              />
-              <h2 className="card-title">{card.title}</h2>
-              <p className="card-description">{card.description}</p>
-              <div style={{ marginTop: '20px', fontSize: '0.9em', color: '#999' }}>
-                Card {cards.length - index} of {DEMO_CARDS.length}
-              </div>
-            </div>
+            <Profile profile={card} key={card.id} />
           </SwipeCard>
         ))}
-      </div>
-
-      <div className="stats">
-        <div className="stat-item">
-          <div className="stat-label">← Left</div>
-          <div className="stat-value">{stats.left}</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-label">→ Right</div>
-          <div className="stat-value">{stats.right}</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-label">↑ Up</div>
-          <div className="stat-value">{stats.up}</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-label">↓ Down</div>
-          <div className="stat-value">{stats.down}</div>
-        </div>
       </div>
     </div>
   );

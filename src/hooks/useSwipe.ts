@@ -16,6 +16,7 @@ const DEFAULT_CONFIG: Required<SwipeConfig> = {
   returnDuration: 200,
   enableRotation: true,
   preventSwipe: [],
+  fadeOnSwipe: true,
 };
 
 export const useSwipe = (
@@ -30,6 +31,7 @@ export const useSwipe = (
     config.exitDuration,
     config.returnDuration,
     config.enableRotation,
+    config.fadeOnSwipe,
     // Use JSON for array comparison (preventSwipe is typically small)
     JSON.stringify(config.preventSwipe),
   ]);
@@ -42,6 +44,7 @@ export const useSwipe = (
     returnDuration,
     enableRotation,
     preventSwipe,
+    fadeOnSwipe,
   } = mergedConfig;
 
   const ref = useRef<HTMLDivElement>(null);
@@ -165,7 +168,7 @@ export const useSwipe = (
 
       animationFrameRef.current = requestAnimationFrame(() => {
         const rotation = enableRotation ? calculateRotation(deltaX, maxRotation) : 0;
-        const newOpacity = calculateOpacity(deltaX, deltaY, threshold);
+        const newOpacity = fadeOnSwipe ? calculateOpacity(deltaX, deltaY, threshold) : 1;
         const newTransform = `translate3d(${deltaX}px, ${deltaY}px, 0px) rotate(${rotation}deg)`;
 
         // Update refs immediately for internal use
@@ -179,7 +182,7 @@ export const useSwipe = (
         });
       });
     },
-    [enableRotation, maxRotation, threshold, preventSwipe, updateRenderState]
+    [enableRotation, maxRotation, threshold, preventSwipe, fadeOnSwipe, updateRenderState]
   );
 
   // Handle swipe end

@@ -35,6 +35,8 @@ export interface SwipeConfig {
   enableRotation?: boolean;
   /** Array of directions to prevent swiping in */
   preventSwipe?: SwipeDirection[];
+  /** Enable/disable card opacity fade while swiping (default: true) */
+  fadeOnSwipe?: boolean;
 }
 
 /**
