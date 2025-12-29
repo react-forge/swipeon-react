@@ -756,6 +756,9 @@ const ACTRESS_PROFILES: ActressProfile[] = [
   },
 ];
 
+// Create a reversed copy once, outside the component to prevent recreation on every render
+const REVERSED_ACTRESS_PROFILES = [...ACTRESS_PROFILES].reverse();
+
 // Profile card styles matching example/app.css
 const tinderCardStyle: React.CSSProperties = {
   width: 320,
@@ -947,8 +950,7 @@ This is an **exact replication** of the \`example/app.tsx\` demo application.
     },
   },
   render: () => {
-    const initialProfiles = [...ACTRESS_PROFILES].reverse();
-    const [cards, setCards] = useState<ActressProfile[]>(initialProfiles);
+    const [cards, setCards] = useState<ActressProfile[]>(REVERSED_ACTRESS_PROFILES);
     const [stats, setStats] = useState({ left: 0, right: 0, up: 0, down: 0 });
 
     const handleSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
@@ -960,7 +962,7 @@ This is an **exact replication** of the \`example/app.tsx\` demo application.
     };
 
     const resetCards = () => {
-      setCards(initialProfiles);
+      setCards(REVERSED_ACTRESS_PROFILES);
       setStats({ left: 0, right: 0, up: 0, down: 0 });
     };
 

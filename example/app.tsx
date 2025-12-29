@@ -4,9 +4,11 @@ import { SwipeCard } from 'swipeon-react';
 import { ACTRESS_PROFILES, ActressProfile } from './actress';
 import { Profile } from './Profile';
 
+// Create a reversed copy once, outside the component to prevent mutation
+const reversedProfiles: ActressProfile[] = [...ACTRESS_PROFILES].reverse();
+
 const App: React.FC = () => {
-  const profiles: ActressProfile[] = ACTRESS_PROFILES.reverse();
-  const [cards, setCards] = useState<ActressProfile[]>(profiles);
+  const [cards, setCards] = useState<ActressProfile[]>(reversedProfiles);
   const [stats, setStats] = useState({
     left: 0,
     right: 0,
@@ -25,7 +27,7 @@ const App: React.FC = () => {
   };
 
   const resetCards = () => {
-    setCards(profiles);
+    setCards(reversedProfiles);
     setStats({ left: 0, right: 0, up: 0, down: 0 });
   };
 
