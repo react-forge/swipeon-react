@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "build": "nvm use 20 && tsdown",
+    "build": "tsdown",
     "dev": "tsdown --watch",
     "prepublishOnly": "npm run build",
     "clean": "rm -rf dist",
