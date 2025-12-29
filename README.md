@@ -9,12 +9,10 @@ A high-performance, zero-dependency React swipe card library with smooth animati
 ## 🎬 Demo
 
 <p align="center">
-  <a href="assets/tinder-swipe-example.mp4">
-    <img src="https://img.shields.io/badge/▶_Watch_Demo_Video-FF0000?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Watch Demo Video" />
-  </a>
+  <img src="assets/tinder-swipe-example.gif" alt="SwipeOn React Demo - Tinder-style swipe cards" width="300" />
 </p>
 
-> 📹 **[Watch Demo Video](assets/tinder-swipe-example.mp4)** - Tinder-style profile cards with 4-direction swipes, custom overlay labels (LIKE/NOPE), and smooth 60fps animations.
+> Tinder-style profile cards with 4-direction swipes, custom overlay labels (LIKE/NOPE), and smooth 60fps animations.
 
 ## ✨ Features
 
