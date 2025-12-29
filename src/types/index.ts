@@ -116,5 +116,15 @@ export interface UseSwipeReturn {
   isDragging: boolean;
   deltaX: number;
   deltaY: number;
+  /** Programmatically trigger a swipe in the specified direction */
+  swipe: (direction: SwipeDirection) => void;
+}
+
+/**
+ * Imperative handle exposed by SwipeCard via ref
+ */
+export interface SwipeCardRef {
+  /** Programmatically trigger a swipe in the specified direction */
+  swipe: (direction: SwipeDirection) => void;
 }
 

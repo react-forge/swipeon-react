@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
-import { SwipeCard } from 'swipeon-react';
+import { SwipeCard, SwipeCardRef } from 'swipeon-react';
 import { ACTRESS_PROFILES, ActressProfile } from './actress';
 import { Profile } from './Profile';
 
@@ -15,6 +15,9 @@ const App: React.FC = () => {
     up: 0,
     down: 0,
   });
+  
+  // Ref to control the top card
+  const topCardRef = useRef<SwipeCardRef>(null);
 
   const handleSwipe = (direction: 'left' | 'right' | 'up' | 'down') => {
     setStats((prev) => ({
@@ -72,65 +75,95 @@ const App: React.FC = () => {
 
       <div className="card-container">
         {/* Render cards in reverse order so the last one is on top */}
-        {cards.map((card, index) => (
-          <SwipeCard
-            key={card.id}
-            onSwipeLeft={() => handleSwipe('left')}
-            onSwipeRight={() => handleSwipe('right')}
-            onSwipeUp={() => handleSwipe('up')}
-            onSwipeDown={() => handleSwipe('down')}
-            threshold={80}
-            velocityThreshold={0.3}
-            maxRotation={15}
-            fadeOnSwipe={false}
-            // Overlay customization props - per-direction labels and styles
-            swipeStyles={{
-              right: {  
-                label: 'LIKE', 
-                labelStyle: { 
-                  position: 'absolute', 
-                  top: 20, 
-                  right: 20,
-                  fontSize: '2.5rem',
-                  fontWeight: 'bold',
-                  color: '#22c55e',
-                  border: '4px solid #22c55e',
-                  borderRadius: '8px',
-                  padding: '8px 16px',
-                  transform: 'rotate(-25deg)',
-                  letterSpacing: '2px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                } 
-              },
-              left: { 
-                label: 'NOPE',
-                labelStyle: { 
-                  position: 'absolute', 
-                  top: 20, 
-                  left: 20,
-                  fontSize: '2.5rem',
-                  fontWeight: 'bold',
-                  color: '#ef4444',
-                  border: '4px solid #ef4444',
-                  borderRadius: '8px',
-                  padding: '8px 16px',
-                  transform: 'rotate(-25deg)',
-                  letterSpacing: '2px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                }
-              },
-              up: { backgroundColor: 'rgba(16, 185, 129, 0.8)', label: '⭐ Super' },
-              down: { backgroundColor: 'rgba(168, 85, 247, 0.8)', label: '⏭ Skip' },
-            }}
-            style={{
-              zIndex: index,
-              transform: `translateY(${(cards.length - index - 1) * 8}px) scale(${1 - (cards.length - index - 1) * 0.02})`,
-              pointerEvents: index === cards.length - 1 ? 'auto' : 'none',
-            }}
-          >
-            <Profile profile={card} key={card.id} />
-          </SwipeCard>
-        ))}
+        {cards.map((card, index) => {
+          const isTopCard = index === cards.length - 1;
+          return (
+            <SwipeCard
+              key={card.id}
+              ref={isTopCard ? topCardRef : undefined}
+              onSwipeLeft={() => handleSwipe('left')}
+              onSwipeRight={() => handleSwipe('right')}
+              onSwipeUp={() => handleSwipe('up')}
+              onSwipeDown={() => handleSwipe('down')}
+              threshold={80}
+              velocityThreshold={0.3}
+              maxRotation={15}
+              exitDuration={500}
+              fadeOnSwipe={false}
+              // Overlay customization props - per-direction labels and styles
+              swipeStyles={{
+                right: {  
+                  label: 'LIKE', 
+                  labelStyle: { 
+                    position: 'absolute', 
+                    top: 20, 
+                    left: 20,
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold',
+                    color: '#22c55e',
+                    border: '4px solid #22c55e',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    transform: 'rotate(-25deg)',
+                    letterSpacing: '2px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                  } 
+                },
+                left: { 
+                  label: 'NOPE',
+                  labelStyle: { 
+                    position: 'absolute', 
+                    top: 20, 
+                    right: 20,
+                    fontSize: '2.5rem',
+                    fontWeight: 'bold',
+                    color: '#ef4444',
+                    border: '4px solid #ef4444',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    transform: 'rotate(-25deg)',
+                    letterSpacing: '2px',
+                    backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                  }
+                },
+                up: { backgroundColor: 'rgba(16, 185, 129, 0.8)', label: '⭐ Super' },
+                down: { backgroundColor: 'rgba(168, 85, 247, 0.8)', label: '⏭ Skip' },
+              }}
+              style={{
+                zIndex: index,
+                transform: `translateY(${(cards.length - index - 1) * 8}px) scale(${1 - (cards.length - index - 1) * 0.02})`,
+                pointerEvents: isTopCard ? 'auto' : 'none',
+              }}
+            >
+              <Profile profile={card} key={card.id} />
+            </SwipeCard>
+          );
+        })}
+      </div>
+
+      {/* Action Buttons */}
+      <div className="action-buttons">
+        <button 
+          className="action-btn unlike-btn" 
+          onClick={() => topCardRef.current?.swipe('left')}
+          aria-label="Unlike"
+        >
+          <span className="btn-icon">✕</span>
+        </button>
+        <button 
+          className="action-btn superlike-btn" 
+          onClick={() => topCardRef.current?.swipe('up')}
+          aria-label="Super Like"
+        >
+          <span className="btn-icon">★</span>
+        </button>
+        <button 
+          className="action-btn like-btn" 
+          onClick={() => topCardRef.current?.swipe('right')}
+          aria-label="Like"
+        >
+          <span className="btn-icon">♥</span>
+        </button>
       </div>
     </div>
   );

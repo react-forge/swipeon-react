@@ -11,6 +11,7 @@ export type {
   SwipeCallbacks,
   SwipeConfig,
   SwipeCardProps,
+  SwipeCardRef,
   SwipeOverlayConfig,
   SwipeDirectionStyle,
   SwipeStyles,

@@ -1,6 +1,6 @@
-import React, { CSSProperties, useMemo, memo } from 'react';
+import React, { CSSProperties, useMemo, memo, forwardRef, useImperativeHandle } from 'react';
 import { useSwipe } from '../hooks/useSwipe';
-import { SwipeCardProps, SwipeCallbacks, SwipeConfig } from '../types';
+import { SwipeCardProps, SwipeCallbacks, SwipeConfig, SwipeCardRef } from '../types';
 
 /**
  * SwipeCard Component
@@ -54,7 +54,7 @@ const DEFAULT_SWIPE_STYLES = {
 // Empty array constant to prevent recreating on each render
 const EMPTY_PREVENT_SWIPE: readonly string[] = [];
 
-const SwipeCardInner: React.FC<SwipeCardProps> = ({
+const SwipeCardInner = forwardRef<SwipeCardRef, SwipeCardProps>(({
   children,
   className = '',
   style,
@@ -74,7 +74,7 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
   fadeOnSwipe = true,
   swipeStyles,
   showOverlay: showOverlayProp = true,
-}) => {
+}, forwardedRef) => {
   // Memoize callbacks object to prevent unnecessary hook updates
   const callbacks: SwipeCallbacks = useMemo(() => ({
     onSwipeLeft,
@@ -97,7 +97,12 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
     fadeOnSwipe,
   }), [threshold, velocityThreshold, maxRotation, exitDuration, returnDuration, enableRotation, preventSwipe, fadeOnSwipe]);
 
-  const { ref, transform, opacity, transition, isDragging, deltaX, deltaY } = useSwipe(callbacks, config);
+  const { ref, transform, opacity, transition, isDragging, deltaX, deltaY, swipe } = useSwipe(callbacks, config);
+
+  // Expose swipe method via ref
+  useImperativeHandle(forwardedRef, () => ({
+    swipe,
+  }), [swipe]);
 
   // Memoize merged swipe styles
   const mergedSwipeStyles = useMemo(() => ({
@@ -211,7 +216,7 @@ const SwipeCardInner: React.FC<SwipeCardProps> = ({
       </div>
     </div>
   );
-};
+});
 
 // Memoize the entire component to prevent unnecessary re-renders from parent
 export const SwipeCard = memo(SwipeCardInner);

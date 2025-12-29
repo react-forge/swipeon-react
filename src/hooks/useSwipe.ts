@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback, useEffect, useMemo } from 'react';
-import { SwipeConfig, SwipeCallbacks, GestureState, UseSwipeReturn } from '../types';
+import { SwipeConfig, SwipeCallbacks, GestureState, UseSwipeReturn, SwipeDirection } from '../types';
 import {
   getSwipeDirection,
   calculateRotation,
@@ -331,6 +331,73 @@ export const useSwipe = (
     };
   }, []);
 
+  // Programmatic swipe function
+  const swipe = useCallback((direction: SwipeDirection) => {
+    // Check if direction is prevented
+    if (preventSwipe.includes(direction)) {
+      return;
+    }
+
+    // Calculate exit coordinates based on direction
+    const exitDistance = 500; // Distance to move off screen
+    let exitX = 0;
+    let exitY = 0;
+
+    switch (direction) {
+      case 'left':
+        exitX = -exitDistance;
+        break;
+      case 'right':
+        exitX = exitDistance;
+        break;
+      case 'up':
+        exitY = -exitDistance;
+        break;
+      case 'down':
+        exitY = exitDistance;
+        break;
+    }
+
+    const rotation = enableRotation ? calculateRotation(exitX, maxRotation * 2) : 0;
+    const exitTransform = `translate3d(${exitX}px, ${exitY}px, 0px) rotate(${rotation}deg)`;
+    const exitTransition = `transform ${exitDuration}ms ease-out, opacity ${exitDuration}ms ease-out`;
+
+    updateRenderState({
+      transition: exitTransition,
+      transform: exitTransform,
+      opacity: 0,
+    });
+
+    // Trigger callback after animation
+    safeTimeout(() => {
+      switch (direction) {
+        case 'left':
+          callbacksRef.current.onSwipeLeft?.();
+          break;
+        case 'right':
+          callbacksRef.current.onSwipeRight?.();
+          break;
+        case 'up':
+          callbacksRef.current.onSwipeUp?.();
+          break;
+        case 'down':
+          callbacksRef.current.onSwipeDown?.();
+          break;
+      }
+
+      callbacksRef.current.onSwipeEnd?.();
+
+      // Reset after callback
+      safeTimeout(() => {
+        updateRenderState({
+          transition: 'none',
+          transform: 'translate3d(0px, 0px, 0px) rotate(0deg)',
+          opacity: 1,
+        });
+      }, 50);
+    }, exitDuration);
+  }, [preventSwipe, enableRotation, maxRotation, exitDuration, updateRenderState, safeTimeout]);
+
   return {
     ref,
     transform: renderState.transform,
@@ -339,5 +406,6 @@ export const useSwipe = (
     isDragging: gestureState.isDragging,
     deltaX: gestureState.deltaX,
     deltaY: gestureState.deltaY,
+    swipe,
   };
 };
