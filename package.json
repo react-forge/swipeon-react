@@ -1,6 +1,6 @@
 {
   "name": "swipeon-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "description": "A high-performance React swipe card library with smooth animations and multi-directional swipe support",
   "main": "dist/index.js",
